@@ -53,13 +53,27 @@ def cleaning_transform(df):
 
 df_train_cleaned = cleaning_transform(mergeddf_new)
 
-X = df_train_cleaned[['Age','Support Calls', 'Payment Delay','Tenure', 'Usage Frequency','Subscription Type',
-       'Contract Length', 'Total Spend', 'Last Interaction',
+df_train_cleaned.rename(columns={'Support Calls': 'Support_Calls',
+ 'Payment Delay': 'Payment_Delay',
+ 'Usage Frequency':'Usage_Frequency',
+ 'Subscription Type': 'Subscription_Type',
+ 'Contract Length':'Contract_Length',
+ 'Total Spend':'Total_Spend',
+ 'Last Interaction':'Last_Interaction'
+ }, inplace=True)
+
+
+X = df_train_cleaned[['Age','Support_Calls', 'Payment_Delay','Tenure', 'Usage_Frequency','Subscription_Type',
+       'Contract_Length', 'Total_Spend', 'Last_Interaction',
        'Gen_Female', 'Gen_Male']]
 
 y = df_train_cleaned["Churn"]
 
 X_train, X_test,y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=42)
+
+feature_names = X_train.columns.tolist()
+
+joblib.dump(feature_names, "./model/feature_names.joblib")
 
 # defining nn model
 def build_nn_model(learningrate=0.001):
