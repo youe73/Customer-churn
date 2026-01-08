@@ -126,7 +126,9 @@ disp.plot()
 plt.title("Confusion Matrix - Keras Churn Model")
 plt.show()
 
-# display classification report
+# save classification report
+with open("classification_report.txt", "w") as outfile:
+    outfile.write(classification_report(y_test, y_pred, digits=4))
 print(classification_report(y_test, y_pred, digits=4))
 
 history = pipeline.named_steps["nn"].model_.history
