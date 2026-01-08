@@ -1,0 +1,33 @@
+name: MLOps customer churn
+
+on: 
+  push: 
+    branches: [dev,stage, main] 
+  pull_request:
+    branches: [dev,stage, main] 
+  workflow_dispatch:  
+
+permissions: 
+  contents: write
+  pull-requests: write
+
+jobs:
+  dev:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install python libraries
+        run: uv pip install -r requirements.txt
+      - name: Train model
+        run: src/train_model.py
+      - name: Create classification reports
+        run: | 
+          echo "## Confusion matrix" > MLreport.md
+          cat confusionmatrix.png >> MLreport.md
+          echo "### Classification report" >> MLreport.md
+          cat classification_report.txt >> MLreport.md
+          ehco "### Training History plot" >> MLreport.md 
+          cat History.png >> MLreport.md
+
+      
