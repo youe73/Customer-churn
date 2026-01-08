@@ -124,7 +124,8 @@ cm = confusion_matrix(y_test, y_pred)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm)
 disp.plot()
 plt.title("Confusion Matrix - Keras Churn Model")
-plt.show()
+#plt.show()
+plt.savefig("confusionmatrix.png")
 
 # save classification report
 with open("classification_report.txt", "w") as outfile:
@@ -164,6 +165,7 @@ def plot_history(hist):
     
 
     plt.tight_layout()
-    plt.show()
+    #plt.show()
+    plt.savefig("History.png")
 
 plot_history(history)
