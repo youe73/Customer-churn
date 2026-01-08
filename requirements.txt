@@ -1,0 +1,17 @@
+numpy
+pandas
+matplotlib
+scikit-learn
+seaborn
+tensorflow
+git-lfs
+mlflow
+dvc
+fastapi[standard]
+uvicorn
+pytest
+smote 
+imblearn 
+scikeras
+dvc[azure] 
+requests
