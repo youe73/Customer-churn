@@ -23,6 +23,9 @@ jobs:
         run: uv venv
       - name: Install requirements
         run: uv pip install -r requirements.txt
+      
+      - name: Install DVC with Azure support
+        run: pip install "dvc[azure]"
 
       - name: Configure Azure credentials
         run: |
