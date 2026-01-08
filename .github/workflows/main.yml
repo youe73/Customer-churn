@@ -19,6 +19,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install python libraries and uv      
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Create virtual environment
+        run: uv venv
       - name: Install requirements
         run: uv pip install -r requirements.txt
       - name: Train model
