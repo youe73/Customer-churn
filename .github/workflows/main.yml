@@ -31,7 +31,7 @@ jobs:
           cat confusionmatrix.png >> MLreport.md
           echo "### Classification report" >> MLreport.md
           cat classification_report.txt >> MLreport.md
-          ehco "### Training History plot" >> MLreport.md 
+          echo "### Training History plot" >> MLreport.md 
           cat History.png >> MLreport.md
 
       
