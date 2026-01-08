@@ -23,6 +23,16 @@ jobs:
         run: uv venv
       - name: Install requirements
         run: uv pip install -r requirements.txt
+
+      - name: Configure Azure credentials
+        run: |
+          dvc remote modify azure_remote account_name ${{ secrets.ACCOUNT_NAME }}
+          dvc remote modify azure_remote account_key ${{ secrets.ACCOUNT_KEY }}
+
+      - name: Pull data and models from DVC
+        run: dvc pull
+
+
       - name: Train model
         run: uv run python src/train_model.py
       - name: Create classification reports
