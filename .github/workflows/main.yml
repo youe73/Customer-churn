@@ -24,7 +24,7 @@ jobs:
       - name: Install requirements
         run: uv pip install -r requirements.txt
       - name: Train model
-        run: python src/train_model.py
+        run: uv run python src/train_model.py
       - name: Create classification reports
         run: | 
           echo "## Confusion matrix" > MLreport.md
