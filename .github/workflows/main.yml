@@ -41,7 +41,7 @@ jobs:
       - name: Run unittests
         run: |
           uv pip install pytest
-          uv pytest tests/test_unittests.py
+          uv run pytest tests/test_unittests.py
           
       - name: Create classification reports
         run: | 
