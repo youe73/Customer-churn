@@ -39,9 +39,9 @@ jobs:
         run: uv run python src/train_model.py
 
       - name: Run unittests
-        run: |
-          uv pip install pytest
-          uv run pytest tests/test_unittests.py
+        run: uv run python -m pytest tests/test_unittests.py
+          #uv pip install pytest
+          #uv run pytest tests/test_unittests.py
           
       - name: Create classification reports
         run: | 
