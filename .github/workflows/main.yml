@@ -38,6 +38,10 @@ jobs:
 
       - name: Train model
         run: uv run python src/train_model.py
+
+      - name: Run unittests
+        run: pytest tests/test_unittests.py
+
       - name: Create classification reports
         run: | 
           echo "## Confusion matrix" > MLreport.md
