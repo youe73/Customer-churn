@@ -40,9 +40,7 @@ jobs:
 
       - name: Run unittests
         run: uv run python -m pytest tests/test_unittests.py
-          #uv pip install pytest
-          #uv run pytest tests/test_unittests.py
-          
+                  
       - name: Create classification reports
         run: | 
           echo "## Confusion matrix" > MLreport.md
@@ -51,5 +49,27 @@ jobs:
           cat classification_report.txt >> MLreport.md
           echo "### Training History plot" >> MLreport.md 
           cat History.png >> MLreport.md
+  stage:
+    if: github.ref_name =='stage'    
+    needs: dev
+    runs-on: ubuntu-latest
+
+    steps: 
+      - uses: actions/checkout@v4      
+
+      - name: docker login dockerhub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.DOCKERHUB_USER }}/cust-app:latest .
+
+      - name: Push Docker image
+        run: docker push ${{ secrets.DOCKERHUB_USER }}/cust-app:latest   
+
+     
+
 
       
